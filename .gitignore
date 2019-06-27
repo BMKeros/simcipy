@@ -1,3 +1,6 @@
+
+print(names)
+.idea/
 env/
 *.pyc
 node_modules/
