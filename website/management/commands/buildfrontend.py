@@ -2,14 +2,11 @@ import subprocess
 import sys
 import signal
 import os
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = 'Compile fronted Vue'
-
-    def add_arguments(self, parser):
-        pass
+    help = 'Compile Assets Frontend Quasar'
 
     def handle(self, *args, **options):
         proc = None
