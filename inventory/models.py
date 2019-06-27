@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class UnitType(models.Model):
@@ -10,5 +11,9 @@ class Unit(models.Model):
     abbreviation = models.CharField(max_length=8)
     type = models.ForeignKey(UnitType, on_delete=None)
 
-class Product(models.Model):
-    pass
+
+class Warehouse(models.Model):
+    code = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=150)
+    responsible = models.ForeignKey(User, on_delete=None)
