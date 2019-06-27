@@ -1,5 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+const fs = require('fs');
 
 module.exports = function (ctx) {
   return {
@@ -60,6 +61,8 @@ module.exports = function (ctx) {
     supportIE: false,
 
     build: {
+      publicPath: '/static/website',
+      distDir: './static/website',
       scopeHoisting: true,
       // vueRouterMode: 'history',
       // vueCompiler: true,
@@ -73,13 +76,16 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
+      },
+      afterBuild() {
+        fs.copyFileSync(__dirname + '/static/website/index.html', __dirname + '/templates/index.html');
       }
     },
 
     devServer: {
       // https: true,
-      // port: 8080,
-      open: true // opens browser window automatically
+      port: 8001,
+      open: false // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations

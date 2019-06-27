@@ -16,6 +16,6 @@ class Command(BaseCommand):
 
         try:
             proc = subprocess.Popen(
-                ['npm', 'run', 'build'], stdout=sys.stdout, stderr=sys.stderr, cwd='website/')
+                ['quasar', 'build'], stdout=sys.stdout, stderr=sys.stderr, cwd='website/')
         except KeyboardInterrupt:
             os.kill(proc.pid, signal.SIGKILL)
