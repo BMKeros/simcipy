@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class UnitType(models.Model):
@@ -25,3 +26,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Order(models.Model):
+    code = models.CharField(max_length=50)
+    responsible = models.ForeignKey(User, on_delete=None, related_name='responsible')
+    applicant = models.ForeignKey(User, on_delete=None, related_name='applicant')
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    observation = models.TextField(max_length=300)
+    status = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.code

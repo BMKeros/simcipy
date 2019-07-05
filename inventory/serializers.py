@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Unit, UnitType, Product
+from django.contrib.auth.models import User
+from .models import Unit, UnitType, Product, Order
 
 
 class UnitTypeSerializer(serializers.Serializer):
@@ -30,3 +31,16 @@ class ProductSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Product.objects.create(**validated_data)
+
+class OrderSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=50)
+    responsible = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    applicant = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    date = serializers.DateTimeField()
+    observation = serializers.CharField(max_length=300)
+    status = serializers.CharField(max_length=20)
+
+    def create(self, validated_data):
+        return Order.objects.create(**validated_data)
+
+
