@@ -18,6 +18,16 @@ class Unit(models.Model):
         return self.name
 
 
+class Warehouse(models.Model):
+    code = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=150)
+    responsible = models.ForeignKey(User, on_delete=None)
+
+    def __str__(self):
+        return f"{self.code} - {self.name}"
+
+
 class Product(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField(max_length=300)
